@@ -23,7 +23,7 @@ window.addEventListener('resize', function(){
 renderer.setSIze(window.innerWidth, window.innerHeight);
 camera.aspect = window.innerWidth / window.innerHeight;
 camera.updateProjectionMatrix();
-), false );
+}, false );
 
 var light = new THREE.DirectionalLight(0xcccccc);
 light.position.set(0,100,30);

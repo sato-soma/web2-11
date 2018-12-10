@@ -9,18 +9,18 @@
     </style>
 </head>
 <body>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js"><script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js"></script>
 <script type="text/javascript">
 var scene = new THREE.Scene();
 var camera = new THREE.PrespectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.Height );
+renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 
 window.addEventListener('resize', function(){
-renderer.setSIze(window.innerWidth, window.innerHeight);
+renderer.setSize(window.innerWidth, window.innerHeight);
 camera.aspect = window.innerWidth / window.innerHeight;
 camera.updateProjectionMatrix();
 }, false );
@@ -32,13 +32,11 @@ scene.add(new THREE.AmbientLight(0x666666));
   
 var loader = new THREE.TextureLoader();
 var geometry = new THREE.SphereGeometry(1,32,16);
-var material = new THREE.MeshStandarMaterial ({
+var material = new THREE.MeshStandardMaterial ({
   color: 0xccffcc,
   map: loader.load('earth.jpg')});
 var mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
-
-camera.position.z = 5;
   
 var particle_geometry = new THREE.Geometry();
   var numParticles = 2000;
@@ -50,11 +48,11 @@ var particle_geometry = new THREE.Geometry();
         Math.random() * 20 - 10));
   }
   
-  var particle_material = new THREE.PointsMaterrial({
+  var particle_material = new THREE.PointsMaterial({
     size: 0.01,
     color: 0x80ffccaa,
     blending: THREE.AdditiveBlending,
-    transparnet: true,
+    transparent: true,
     depthTest: true
   });
   
@@ -62,11 +60,10 @@ var particle_geometry = new THREE.Geometry();
   scene.add(emitter);
         
 var clock = new THREE.Clock();
-var render = fuction () {
+var render = function () {
 requestAnimationFrame( render );
 
 var delta_time = clock.getDelta();
-mesh.rotation.x += 0.1 * delta_time;
 mesh.rotation.y += 0.3 * delta_time;
 
 renderer.render(scene, camera);

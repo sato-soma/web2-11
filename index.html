@@ -12,7 +12,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js"></script>
 <script type="text/javascript">
 var scene = new THREE.Scene();
-var camera = new THREE.PrespectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -58,6 +58,8 @@ var particle_geometry = new THREE.Geometry();
   
   var emitter = new THREE.Points(particle_geometry, particle_material);
   scene.add(emitter);
+  
+  camera.position.z =3;
         
 var clock = new THREE.Clock();
 var render = function () {
